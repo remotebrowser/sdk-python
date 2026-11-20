@@ -8,6 +8,7 @@ from dataclasses import dataclass
 import pytest
 from conftest import FakeServer
 
+import remotebrowser
 from remotebrowser._cli import run
 
 
@@ -45,7 +46,7 @@ def test_help_needs_no_credentials(capsys: pytest.CaptureFixture[str]) -> None:
 
 def test_version(capsys: pytest.CaptureFixture[str]) -> None:
     assert run(["--version"]) == 0
-    assert capsys.readouterr().out.strip() == "0.1.0"
+    assert capsys.readouterr().out.strip() == remotebrowser.__version__
 
 
 def test_create_sends_the_options_and_prints_the_id(cli, server: FakeServer) -> None:
